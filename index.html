@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayTrack Ghana - Fair Fares</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <button class="menu-btn" id="menuBtn">
+            <img src="assets/icons8-hamburger-menu-30.png" class="fas fa-bars"></i>
+        </button>
+        <div class="logo">
+            <img src="assets/logo.png" alt="PayTrack's logo">
+            <span>PayTrack</span>
+        </div>
+        <div></div> 
+    </div>
+    
+    <!-- Map Section -->
+    <div class="map-container">
+        <div id="map"></div>
+        <div class="map-controls">
+            <button class="map-btn" id="zoomIn">
+                <img src="assets/icons8-zoom-plus-30.png" class="fas fa-plus"></i>
+            </button>
+            <button class="map-btn" id="zoomOut">
+                <img src="assets/icons8-zoom-minus-30.png" class="fas fa-minus"></i>
+            </button>
+            <button class="map-btn" id="locateMe">
+                <img src="assets/icons8-navigation-30.png" class="fas fa-location-arrow"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Content Section -->
+    <div class="content-section">
+        <div class="tagline">Know Your Fare. Own Your Ride.</div>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="destination-input" placeholder="Where to?">
+        </div>
+    </div>
+    
+   <!-- Bottom Navigation -->
+<div class="bottom-nav">
+  <a href="index.html" class="nav-item active">
+      <img src="assets/icons8-home-24.png" class="fas fa-home nav-icon"></i>
+      <span>Home</span>
+  </a>
+  <a href="fares.html" class="nav-item">
+      <img src="assets/icons8-money-24.png" class="fas fa-money-bill-wave nav-icon"></i>
+      <span>Fares</span>
+  </a>
+  <a href="accounts.html" class="nav-item">  
+      <img src="assets/icons8-account-24.png" class="fas fa-user nav-icon"></i>
+      <span>Account</span>
+  </a>
+</div>
+    
+    <!-- Sidebar Drawer -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-text">
+                    <h2>John Mensah</h2>
+                    <p>My account</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-items">
+            <a href="#" class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="menu-title">Payment</div>
+            </a>
+            <a href="#" class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="menu-title">My Rides</div>
+            </a>
+            <a href="#" class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <div class="menu-title">Support</div>
+            </a>
+            <a href="#" class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="menu-title">About</div>
+            </a>
+        </div>
+        
+        <div class="sidebar-footer">
+            PayTrack Ghana v1.0<br>
+            © 2025 All rights reserved
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- JavaScript Files -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
