@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fair Fare Calculator</title>
+  <link rel="stylesheet" href="fares.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <!-- App Container -->
+  <div class="app-container">
+    <!-- Top Navigation -->
+    <header class="app-header">
+      <button class="back-btn" id="backBtn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="app-title">PayTrack</h1>
+      <div class="header-spacer"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <section class="fare-calculator">
+        <div class="card">
+          <div class="card-header">
+            <h2><i class="fas fa-taxi"></i> Calculate Fare</h2>
+            <p class="subtitle">Know the government-approved fare before you ride</p>
+          </div>
+          
+          <div class="card-body">
+            <div class="input-group">
+              <div class="input-box">
+                <label for="from"><i class="fas fa-map-marker-alt"></i> From</label>
+                <input type="text" id="from" placeholder="Enter starting location" autocomplete="off">
+                <div id="from-suggestions" class="suggestions-container"></div>
+              </div>
+              
+              <div class="input-box">
+                <label for="to"><i class="fas fa-flag-checkered"></i> To</label>
+                <input type="text" id="to" placeholder="Enter destination" autocomplete="off">
+                <div id="to-suggestions" class="suggestions-container"></div>
+              </div>
+            </div>
+
+            <div class="region-select">
+              <label for="region"><i class="fas fa-globe-africa"></i> Region (optional)</label>
+              <select id="region">
+                <option value="">Auto-detect region</option>
+                <option value="Greater Accra">Greater Accra</option>
+                <option value="Ashanti">Ashanti</option>
+                <option value="Ahafo">Ahafo</option>
+                <option value="Bono">Bono</option>
+                <option value="Bono East">Bono East</option>
+                <option value="Central">Central</option>
+                <option value="Eastern">Eastern</option>
+                <option value="North East">North East</option>
+                <option value="Northern">Northern</option>
+                <option value="Oti">Oti</option>
+                <option value="Savannah">Savannah</option>
+                <option value="Upper East">Upper East</option>
+                <option value="Upper West">Upper West</option>
+                <option value="Volta">Volta</option>
+                <option value="Western">Western</option>
+                <option value="Western North">Western North</option>
+              </select>
+            </div>
+
+            <button id="calculate-btn" class="cta-button">
+              <span class="button-content">
+                <i class="fas fa-calculator"></i>
+                <span>Calculate Fare</span>
+              </span>
+              <span class="loading-spinner hidden">
+                <i class="fas fa-spinner fa-spin"></i>
+              </span>
+            </button>
+
+            <div id="result" class="hidden">
+              <div class="fare-card">
+                <div class="legal-badge">GOVERNMENT APPROVED</div>
+                <div class="fare-amount">₵<span id="fare-amount">0.00</span></div>
+                <div class="route-info">
+                  <span id="route-distance">0 km</span> • 
+                  <span id="route-region">Region</span>
+                </div>
+                <div class="fare-details">
+                  <div class="detail-item">
+                    <span>Base Fare</span>
+                    <span id="base-fare">₵0.00</span>
+                  </div>
+                  <div class="detail-item">
+                    <span>Distance Rate</span>
+                    <span id="distance-rate">₵0.00/km</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="map"></div>
+          </div>
+        </div>
+
+        <div class="popular-routes">
+          <h3><i class="fas fa-star"></i> Popular Routes</h3>
+          <div class="routes-grid" id="routes-grid">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-home nav-icon"></i>
+        <span>Home</span>
+      </a>
+      <a href="fares.html" class="nav-item active">
+        <i class="fas fa-money-bill-wave nav-icon"></i>
+        <span>Fares</span>
+      </a>
+      <a href="accounts.html" class="nav-item">  
+        <i class="fas fa-user nav-icon"></i>
+        <span>Account</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="fares.js"></script>
+</body>
+</html>
