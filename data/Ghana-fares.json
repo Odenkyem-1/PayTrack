@@ -1,38 +1,102 @@
 {
-    "regions": {
-      "Ashanti": {"base": 4.00, "perKm": 2.80},
-      "Brong-Ahafo": {"base": 3.80, "perKm": 2.60},
-      "Central": {"base": 4.20, "perKm": 2.90},
-      "Eastern": {"base": 3.90, "perKm": 2.70},
-      "Greater Accra": {"base": 4.50, "perKm": 3.00},
-      "Northern": {"base": 3.70, "perKm": 2.50},
-      "Upper East": {"base": 3.60, "perKm": 2.40},
-      "Upper West": {"base": 3.60, "perKm": 2.40},
-      "Volta": {"base": 3.85, "perKm": 2.65},
-      "Western": {"base": 4.10, "perKm": 2.85},
-      "Western North": {"base": 3.95, "perKm": 2.75},
-      "Oti": {"base": 3.75, "perKm": 2.55},
-      "Savannah": {"base": 3.65, "perKm": 2.45},
-      "Bono East": {"base": 3.85, "perKm": 2.65},
-      "Ahafo": {"base": 3.90, "perKm": 2.70},
-      "North East": {"base": 3.65, "perKm": 2.45}
+  "regions": {
+    "Greater Accra": {
+      "base": 4.50,
+      "perKm": 3.00,
+      "minFare": 8.00,
+      "rounding": 0.50
     },
-    "townExceptions": {
-      "Obuasi": {"region": "Ashanti", "base": 4.20, "perKm": 2.90},
-      "Tarkwa": {"region": "Western", "base": 4.30, "perKm": 3.00}
+    "Ashanti": {
+      "base": 4.00,
+      "perKm": 2.80,
+      "minFare": 7.00,
+      "rounding": 0.50
     },
-  
-      "townOverrides": {
-        "Tarkwa": {
-          "base": 0.12,
-          "perKm": 1.32,
-          "landmarks": {
-            "UMaT": [5.3018, -1.9932],
-            "Effuanta": [5.3065, -1.9848],
-            "Tamso": [5.3080, -1.9700],
-            "Akyempim": [5.3200, -1.9500]
-          }
-        }
-      }
+    "Eastern": {
+      "base": 3.90,
+      "perKm": 2.70,
+      "minFare": 7.00,
+      "rounding": 0.50
+    },
+    "Central": {
+      "base": 4.20,
+      "perKm": 2.90,
+      "minFare": 7.50,
+      "rounding": 0.50
+    },
+    "Western": {
+      "base": 4.10,
+      "perKm": 2.85,
+      "minFare": 7.50,
+      "rounding": 0.50
+    },
+    "Volta": {
+      "base": 3.85,
+      "perKm": 2.65,
+      "minFare": 7.00,
+      "rounding": 0.50
+    },
+    "Northern": {
+      "base": 3.70,
+      "perKm": 2.50,
+      "minFare": 6.50,
+      "rounding": 0.50
+    }
+  },
+  "townExceptions": {
+    "Nsawam": {
+      "region": "Eastern",
+      "base": 5.00,
+      "perKm": 2.50,
+      "minFare": 10.00,
+      "rounding": 1.00
+    },
+    "Accra": {
+      "region": "Greater Accra",
+      "base": 5.00,
+      "perKm": 3.50,
+      "minFare": 10.00,
+      "rounding": 1.00
+    },
+    "Kumasi": {
+      "region": "Ashanti",
+      "base": 5.00,
+      "perKm": 3.00,
+      "minFare": 10.00,
+      "rounding": 1.00
+    },
+    "Tema": {
+      "region": "Greater Accra",
+      "base": 5.50,
+      "perKm": 3.00,
+      "minFare": 12.00,
+      "rounding": 1.00
+    }
+  },
+  "popularRoutes": [
+    {
+      "from": "Nsawam",
+      "to": "Accra",
+      "distance": 40,
+      "baseFare": 5.00,
+      "perKm": 2.50,
+      "typicalFare": 100.00
+    },
+    {
+      "from": "Kumasi",
+      "to": "Ejisu",
+      "distance": 20,
+      "baseFare": 5.00,
+      "perKm": 3.00,
+      "typicalFare": 60.00
+    },
+    {
+      "from": "Tema",
+      "to": "Accra",
+      "distance": 30,
+      "baseFare": 5.50,
+      "perKm": 3.00,
+      "typicalFare": 90.00
+    }
+  ]
 }
-  
