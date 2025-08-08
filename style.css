@@ -1,0 +1,476 @@
+:root {
+  --primary: #0A2463;
+  --primary-light: #3E92CC;
+  --secondary: #00E8FF;
+  --accent: #FF6B35;
+  --background: #F8F9FA;
+  --card-bg: #FFFFFF;
+  --text: #2D2D2D;
+  --text-light: #7A7A7A;
+  --border: #E0E0E0;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  color: var(--text);
+  background-color: var(--background);
+  line-height: 1.5;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(70px + var(--safe-area-inset-bottom));
+}
+
+/* Improved Top Bar */
+.top-bar {
+  background-color: var(--primary);
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo img {
+  height: 30px;
+  width: auto;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.menu-btn:active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Map Container */
+.map-container {
+  height: 50vh;
+  min-height: 300px;
+  position: relative;
+  width: 100%;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+.map-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 500;
+}
+
+.map-btn {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.map-btn:active {
+  transform: scale(0.95);
+}
+
+/* Custom Map Marker Styles */
+.leaflet-marker-icon {
+  background-color: var(--primary);
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+
+.leaflet-marker-icon i {
+  color: white;
+  font-size: 1rem;
+}
+
+/* Improved Content Section */
+.content-section {
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tagline {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.3;
+}
+
+/* Enhanced Search */
+.search-container {
+  background: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  position: relative;
+}
+
+.search-container:focus-within {
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.search-icon {
+  color: var(--text-light);
+  font-size: 1.2rem;
+  margin-right: 12px;
+}
+
+#destination-input {
+  flex-grow: 1;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  color: var(--text);
+  outline: none;
+  min-height: 24px;
+  padding-right: 40px;
+}
+
+.search-btn {
+  position: absolute;
+  right: 12px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Fare Card */
+.fare-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-top: 20px;
+  display: none;
+}
+
+.fare-card.visible {
+  display: block;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.fare-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.fare-details p {
+  color: var(--text-light);
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bottom Navigation - Improved for Mobile */
+.bottom-nav {
+  display: flex;
+  background: white;
+  border-top: 1px solid var(--border);
+  height: calc(70px + var(--safe-area-inset-bottom));
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-bottom: var(--safe-area-inset-bottom);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 0.75rem;
+  transition: var(--transition);
+  padding: 8px 0;
+}
+
+.nav-item.active {
+  color: var(--primary);
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.nav-item.active .nav-icon {
+  color: var(--secondary);
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px; /* Start completely off-screen to the left */
+  width: 85%;
+  max-width: 320px;
+  height: 100vh;
+  background: white;
+  z-index: 1100;
+  transition: left 0.3s ease-out; /* Changed to left property */
+  box-shadow: 4px 0 15px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  left: 0; /* Slide in from left */
+}
+
+.sidebar-header {
+  background: var(--primary);
+  color: white;
+  padding: 70px 20px 20px; /* Extra top padding for status bar */
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-btn:active {
+  background: rgba(255,255,255,0.2);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.user-text h2 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.user-text p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.menu-items {
+  padding: 20px 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 25px;
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.2s;
+}
+
+.menu-item:active {
+  background: rgba(10, 36, 99, 0.05);
+}
+
+.menu-icon {
+  width: 24px;
+  text-align: center;
+  margin-right: 15px;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.menu-title {
+  font-size: 1rem;
+}
+
+.sidebar-footer {
+  padding: 15px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* OVERLAY STYLES */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000; /* Below sidebar but above everything else */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Prevent scrolling when sidebar is open */
+body.sidebar-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Samsung A35 specific adjustments */
+@media (max-width: 412px) {
+  .sidebar {
+    width: 85%;
+    left: -85%; /* Match the width percentage */
+  }
+  
+  .menu-item {
+    padding: 14px 18px;
+  }
+  
+  .sidebar-header {
+    padding: 60px 15px 15px;
+  }
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
+  
+  .bottom-nav {
+    position: static;
+    height: 70px;
+    padding-bottom: 0;
+  }
+  
+  .content-section {
+    padding-bottom: 20px;
+  }
+  
+  .tagline {
+    font-size: 1.8rem;
+  }
+}
+
+/* Samsung A35 specific optimizations */
+@media (max-width: 412px) and (max-height: 915px) {
+  .map-container {
+    height: 45vh;
+  }
+  
+  .tagline {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+  
+  .search-container {
+    padding: 10px 14px;
+  }
+}
+

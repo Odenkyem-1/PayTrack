@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - PayTrack Ghana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="accounts.css">
+</head>
+<body>
+    <!-- Account Header -->
+    <div class="account-header">
+        <button class="back-btn" id="backBtn">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="profile-icon-container">
+            <div class="profile-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="add-photo-badge">
+                <i class="fas fa-plus"></i>
+            </div>
+        </div>
+        <div class="user-name">John Mensah</div>
+        <div class="user-email">john.mensah@example.com</div>
+    </div>
+    
+    <!-- Settings Container -->
+    <div class="settings-container">
+        <div class="section-title">Account Settings</div>
+        
+        <!-- Personal Info -->
+        <div class="settings-item" id="personalInfoBtn">
+            <div class="settings-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Personal Info</div>
+                <div class="settings-description">Update your name, phone number, and email</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Login & Security -->
+        <div class="settings-item" id="securityBtn">
+            <div class="settings-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Login & Security</div>
+                <div class="settings-description">Password, 2-step verification, login methods</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Privacy -->
+        <div class="settings-item" id="privacyBtn">
+            <div class="settings-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Privacy</div>
+                <div class="settings-description">Data sharing, permissions, visibility preferences</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Payment Methods -->
+        <div class="settings-item">
+            <div class="settings-icon">
+                <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Payment Methods</div>
+                <div class="settings-description">Add or remove payment options</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Notifications -->
+        <div class="settings-item">
+            <div class="settings-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Notifications</div>
+                <div class="settings-description">Manage notification preferences</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Preferences -->
+        <div class="settings-item">
+            <div class="settings-icon">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Preferences</div>
+                <div class="settings-description">Language, theme, and app settings</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- NEW: Saved Places Section -->
+        <div class="section-title">Saved Places</div>
+        
+        <!-- Home Location -->
+        <div class="settings-item" id="homeLocation">
+            <div class="settings-icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Home Location</div>
+                <div class="settings-description" id="homeAddress">Not set</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Work Location -->
+        <div class="settings-item" id="workLocation">
+            <div class="settings-icon">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Work Location</div>
+                <div class="settings-description" id="workAddress">Not set</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Add a Place -->
+        <div class="settings-item" id="addPlace">
+            <div class="settings-icon" style="background-color: #E6F7FF;">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Add a Place</div>
+                <div class="settings-description">Save frequent destinations</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Saved Places List -->
+        <div id="savedPlacesList" class="saved-places-container">
+            <!-- Dynamically added saved places will appear here -->
+        </div>
+        
+        <div class="section-title">Support</div>
+        
+        <!-- Help Center -->
+        <div class="settings-item">
+            <div class="settings-icon">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Help Center</div>
+                <div class="settings-description">Find answers to common questions</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Contact Support -->
+        <div class="settings-item">
+            <div class="settings-icon">
+                <i class="fas fa-headset"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">Contact Support</div>
+                <div class="settings-description">Get help from our support team</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- About -->
+        <div class="settings-item">
+            <div class="settings-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title">About PayTrack</div>
+                <div class="settings-description">Version 1.0 • Terms of Service • Privacy Policy</div>
+            </div>
+            <div class="settings-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Logout -->
+        <div class="settings-item" id="logoutBtn">
+            <div class="settings-icon" style="background-color: #FFF0F0; color: #E53935;">
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <div class="settings-content">
+                <div class="settings-title" style="color: #E53935;">Log Out</div>
+                <div class="settings-description">Sign out of your account</div>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <img src="assets/icons8-home-24.png" class="fas fa-home nav-icon"></i>
+            <span>Home</span>
+        </a>
+        <a href="fares.html" class="nav-item ">
+            <img src="assets/icons8-money-24.png" class="fas fa-money-bill-wave nav-icon"></i>
+            <span>Fares</span>
+        </a>
+        <a href="accounts.html" class="nav-item active ">  
+            <img src="assets/icons8-account-24.png" class="fas fa-user nav-icon"></i>
+            <span>Account</span>
+        </a>
+    </div>
+    
+    <!-- Modals (existing modals) -->
+    
+    <!-- NEW: Location Editor Modal -->
+    <div class="modal" id="locationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="closeLocationModal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 id="locationModalTitle">Set Location</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Location Type</label>
+                    <select class="form-input" id="locationType">
+                        <option value="home">Home</option>
+                        <option value="work">Work</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Location Name</label>
+                    <input type="text" class="form-input" id="locationName" placeholder="e.g. My Gym">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Address</label>
+                    <textarea class="form-input" id="locationAddress" rows="3" placeholder="Enter full address"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-secondary" id="cancelLocation">Cancel</button>
+                    <button class="btn btn-primary" id="saveLocation">Save Location</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="accounts.js"></script>
+</body>
+</html>

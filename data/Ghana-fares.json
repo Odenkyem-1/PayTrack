@@ -1,0 +1,38 @@
+{
+    "regions": {
+      "Ashanti": {"base": 4.00, "perKm": 2.80},
+      "Brong-Ahafo": {"base": 3.80, "perKm": 2.60},
+      "Central": {"base": 4.20, "perKm": 2.90},
+      "Eastern": {"base": 3.90, "perKm": 2.70},
+      "Greater Accra": {"base": 4.50, "perKm": 3.00},
+      "Northern": {"base": 3.70, "perKm": 2.50},
+      "Upper East": {"base": 3.60, "perKm": 2.40},
+      "Upper West": {"base": 3.60, "perKm": 2.40},
+      "Volta": {"base": 3.85, "perKm": 2.65},
+      "Western": {"base": 4.10, "perKm": 2.85},
+      "Western North": {"base": 3.95, "perKm": 2.75},
+      "Oti": {"base": 3.75, "perKm": 2.55},
+      "Savannah": {"base": 3.65, "perKm": 2.45},
+      "Bono East": {"base": 3.85, "perKm": 2.65},
+      "Ahafo": {"base": 3.90, "perKm": 2.70},
+      "North East": {"base": 3.65, "perKm": 2.45}
+    },
+    "townExceptions": {
+      "Obuasi": {"region": "Ashanti", "base": 4.20, "perKm": 2.90},
+      "Tarkwa": {"region": "Western", "base": 4.30, "perKm": 3.00}
+    },
+  
+      "townOverrides": {
+        "Tarkwa": {
+          "base": 0.12,
+          "perKm": 1.32,
+          "landmarks": {
+            "UMaT": [5.3018, -1.9932],
+            "Effuanta": [5.3065, -1.9848],
+            "Tamso": [5.3080, -1.9700],
+            "Akyempim": [5.3200, -1.9500]
+          }
+        }
+      }
+}
+  
