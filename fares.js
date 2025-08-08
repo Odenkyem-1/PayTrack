@@ -162,17 +162,20 @@ function deg2rad(deg) {
 
 // Calculate fare based on Ghana transport formula
 function calculateFareAmount(distanceKm, rateInfo) {
-  const baseFare = rateInfo.base;
-  const perKmRate = rateInfo.perKm;
-  const fuelCostPerLiter = 12.50;
-  const consumptionRate = 0.1;
-  const markupPercentage = 0.15;
-  const unionSurcharge = 1.50;
+  // Ensure minimum distance of 1km
+  const effectiveDistance = Math.max(distanceKm, 1);
   
-  const distanceCharge = distanceKm * perKmRate;
-  const fuelCost = fuelCostPerLiter * consumptionRate * distanceKm * (1 + markupPercentage);
+  // Calculate raw fare
+  let fare = rateInfo.base + (effectiveDistance * rateInfo.perKm);
   
-  return baseFare + distanceCharge + fuelCost + unionSurcharge;
+  // Apply minimum fare
+  fare = Math.max(fare, rateInfo.minFare || 5.00);
+  
+  // Round according to regional rules (usually to nearest 0.50 or 1.00 GHS)
+  const roundingUnit = rateInfo.rounding || 0.50;
+  fare = Math.round(fare / roundingUnit) * roundingUnit;
+  
+  return fare;
 }
 
 // Draw route line on map
@@ -246,34 +249,36 @@ async function getRegionInfo(location, selectedRegion) {
 
 // Populate popular routes
 function populatePopularRoutes() {
-  if (!fareData.popularRoutes) return;
-  
-  const routesGrid = document.querySelector('.routes-grid');
-  if (!routesGrid) return;
-  
-  routesGrid.innerHTML = '';
-  
-  fareData.popularRoutes.forEach(route => {
-    const routeCard = document.createElement('div');
-    routeCard.className = 'route-card';
-    routeCard.innerHTML = `
+  const routesGrid = document.getElementById('routes-grid');
+  if (!routesGrid || !fareData.popularRoutes) return;
+
+  routesGrid.innerHTML = fareData.popularRoutes.map(route => `
+    <div class="route-card">
       <div class="route-info">
         <div class="route-name">${route.from} to ${route.to}</div>
-        <div class="route-fare">₵${route.fare.toFixed(2)}</div>
+        <div class="route-distance">${route.distance} km</div>
+        <div class="route-fare">₵${route.typicalFare.toFixed(2)}</div>
       </div>
-      <button class="route-select">Select</button>
-    `;
-    
-    routeCard.querySelector('.route-select').addEventListener('click', () => {
-      document.getElementById('from').value = route.from;
-      document.getElementById('to').value = route.to;
-      document.getElementById('region').value = route.region || '';
+      <button class="route-select" 
+              data-from="${route.from}" 
+              data-to="${route.to}"
+              data-fare="${route.typicalFare}">
+        Select
+      </button>
+    </div>
+  `).join('');
+
+  // Add event listeners
+  document.querySelectorAll('.route-select').forEach(button => {
+    button.addEventListener('click', function() {
+      document.getElementById('from').value = this.dataset.from;
+      document.getElementById('to').value = this.dataset.to;
+      
+      // Optional: Auto-calculate if you want
+      document.getElementById('calculate-btn').click();
     });
-    
-    routesGrid.appendChild(routeCard);
   });
 }
-
 // Show alert message
 function showAlert(message, type) {
   const alert = document.createElement('div');
