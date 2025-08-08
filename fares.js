@@ -19,19 +19,12 @@ const OPENCAGE_API_KEY = "0bde10b2c5ab41fa8fa5f73b6b50caaa";
 // Initialize the map using Leaflet
 function initMap() {
   // Center on Ghana
-  window.map = L.map('map', {
-    zoomControl: false // We'll add our own positioned control
-  }).setView([7.9465, -1.0232], 7);
+  map = L.map('map').setView([7.9465, -1.0232], 7);
   
   // Add OpenStreetMap tiles
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(window.map);
-  
-  // Add zoom control with better mobile positioning
-  L.control.zoom({
-    position: window.innerWidth < 768 ? 'bottomright' : 'topright'
-  }).addTo(window.map);
+  }).addTo(map);
   
   // Initialize markers with custom icons
   const fromIcon = L.icon({
@@ -46,11 +39,8 @@ function initMap() {
     iconAnchor: [16, 32]
   });
   
-  window.fromMarker = L.marker([0, 0], {icon: fromIcon}).addTo(window.map);
-  window.toMarker = L.marker([0, 0], {icon: toIcon}).addTo(window.map);
-  
-  // Set initial map size
-  handleResize();
+  fromMarker = L.marker([0, 0], {icon: fromIcon}).addTo(map);
+  toMarker = L.marker([0, 0], {icon: toIcon}).addTo(map);
 }
 
 // Tab Navigation
@@ -72,14 +62,6 @@ async function calculateFare() {
   const from = document.getElementById('from').value;
   const to = document.getElementById('to').value;
   const region = document.getElementById('region').value;
-
-  // Fit map bounds with responsive padding
-  const padding = window.innerWidth < 768 ? [20, 20] : [50, 50];
-  window.map.fitBounds([
-    [fromLocation.lat, fromLocation.lng],
-    [toLocation.lat, toLocation.lng]
-  ], { padding: padding });
-  
   
   if (!from || !to) {
     showAlert("Please enter both locations", "error");
@@ -195,20 +177,20 @@ function calculateFareAmount(distanceKm, rateInfo) {
 
 // Draw route line on map
 function drawRouteLine(fromLocation, toLocation) {
-  if (window.routeLine) window.map.removeLayer(window.routeLine);
+  if (routeLine) map.removeLayer(routeLine);
   
-  window.routeLine = L.polyline(
+  routeLine = L.polyline(
     [
       [fromLocation.lat, fromLocation.lng],
       [toLocation.lat, toLocation.lng]
     ],
     {
       color: '#D4AF37',
-      weight: window.innerWidth < 768 ? 3 : 4,
+      weight: 4,
       opacity: 0.8,
       dashArray: '5, 5'
     }
-  ).addTo(window.map);
+  ).addTo(map);
 }
 
 // Display results
@@ -318,37 +300,4 @@ function showAlert(message, type) {
 }
 
 // Initialize when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  initMap();
-  
-  // Handle back button
-  document.getElementById('backBtn').addEventListener('click', function() {
-    window.history.back();
-  });
-  
-  // Handle window resize for responsive adjustments
-  window.addEventListener('resize', handleResize);
-  
-  // Initial responsive adjustments
-  handleResize();
-});
-
-function handleResize() {
-  // Adjust map height based on window size
-  const mapElement = document.getElementById('map');
-  if (mapElement && window.map) {
-    const windowHeight = window.innerHeight;
-    const headerHeight = document.querySelector('.app-header').offsetHeight;
-    const cardHeight = document.querySelector('.card').offsetHeight;
-    const availableHeight = windowHeight - headerHeight - cardHeight - 100; // 100px buffer
-    
-    // Set map height to be 40% of viewport height but not less than 250px
-    const newHeight = Math.max(250, Math.min(availableHeight, windowHeight * 0.4));
-    mapElement.style.height = `${newHeight}px`;
-    
-    // Refresh map
-    setTimeout(() => {
-      window.map.invalidateSize();
-    }, 100);
-  }
-}
+document.addEventListener('DOMContentLoaded', initMap);
